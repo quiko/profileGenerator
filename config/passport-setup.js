@@ -5,7 +5,6 @@ const User = require("../models/user");
 
 passport.serializeUser((user,done)=>{
   done(null,user.id)
-  console.log(done())
 });
 
 passport.deserializeUser((id,done)=>{
@@ -30,7 +29,6 @@ passport.use(
       User.findOne({ linkedinId: profile.id }).then(currentUser => {
         //already have user
         if (currentUser) {
-          console.log(currentUser);
           done(null,currentUser)
         } else {
           //if not then create new user in db
@@ -43,7 +41,6 @@ passport.use(
           })
             .save()
             .then(newUser => {
-              console.log("new user created: ", newUser);
               done(null, newUser)
             });
         }
