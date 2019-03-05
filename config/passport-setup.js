@@ -25,7 +25,6 @@ passport.use(
     function(accessToken, refreshToken, profile, done) {
       // asynchronous verification, for effect...
       //check if user already exist in db
-      console.log(profile)
       User.findOne({ linkedinId: profile.id }).then(currentUser => {
         //already have user
         if (currentUser) {
